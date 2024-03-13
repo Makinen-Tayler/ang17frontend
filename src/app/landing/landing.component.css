@@ -1,0 +1,14 @@
+
+.buttonContainer {
+    position: fixed; /* Position fixed to ensure it overlays everything */
+    top: 50%; /* Position from the top at 50% */
+    left: 50%; /* Position from the left at 50% */
+    transform: translate(-50%, -50%); /* Translate back by half of its own width and height */
+    display: flex;
+    flex-direction: column; /* Arrange buttons vertically */
+    align-items: center; /* Horizontally center content */
+}
+
+.buttonContainer button {
+    margin-bottom: 10px; /* Add margin between buttons */
+}

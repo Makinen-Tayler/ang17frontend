@@ -7,7 +7,7 @@ import { LandingComponent } from './landing/landing.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, LandingComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'API Project';

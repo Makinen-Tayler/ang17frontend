@@ -7,7 +7,7 @@ import {RouterModule} from '@angular/router';
   standalone: true,
   imports: [MatButtonModule, MatIconModule, RouterModule],
   templateUrl: './landing.component.html',
-  styleUrl: './landing.component.css'
+  styleUrl: './landing.component.scss'
 })
 export class LandingComponent {
 

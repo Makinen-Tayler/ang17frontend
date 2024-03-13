@@ -3,5 +3,8 @@
 html, body { 
     height: 100%; 
     background-color: #202123;
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: white;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

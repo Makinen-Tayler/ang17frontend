@@ -13,45 +13,46 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   standalone: true,
   imports: [MatInputModule, MatFormFieldModule, FormsModule, MatCardModule, MatButtonModule, MatIconModule, RouterModule, ReactiveFormsModule, ToastrModule],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
 
 
 
-export class RegisterComponent {
+export class LoginComponent {
 
   constructor(private userService: UserService, private toastr: ToastrService, private router: Router) {}
 
-  registerForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+  loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
 
 
   onSubmit() {
-    if(this.registerForm.valid) {
-      this.userService.register(this.registerForm.value).subscribe({
+    if(this.loginForm.valid) {
+      this.userService.login(this.loginForm.value).subscribe({
         next: (res: any) => {
           console.log(res);
           this.toastr.success(res.message, "Success!", { timeOut: 6000 });
-          this.router.navigate(['/login']);
+          localStorage.setItem('token', 'token');
+          // Navigate to the route '/dashboard'
+          this.router.navigate(['/home']);
         },
         error: (error: any) => {
           console.log(error);
           this.toastr.error(error.error.message, "Error!", { timeOut: 3000 });
         }
       });
-      this.registerForm.reset();
+      this.loginForm.reset();
 
       // Clear validation states
-      Object.keys(this.registerForm.controls).forEach(controlName => {
-        this.registerForm.get(controlName)?.clearValidators();
-        this.registerForm.get(controlName)?.updateValueAndValidity();
+      Object.keys(this.loginForm.controls).forEach(controlName => {
+        this.loginForm.get(controlName)?.clearValidators();
+        this.loginForm.get(controlName)?.updateValueAndValidity();
       });
 
     }

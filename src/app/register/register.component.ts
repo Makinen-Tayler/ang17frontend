@@ -7,11 +7,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MatInputModule, MatFormFieldModule, FormsModule, MatCardModule, MatButtonModule, MatIconModule, RouterModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatFormFieldModule, FormsModule, MatCardModule, MatButtonModule, MatIconModule, RouterModule, ReactiveFormsModule, ToastrModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -20,7 +23,7 @@ import { UserService } from '../services/user.service';
 
 export class RegisterComponent {
 
-  constructor(private service: UserService) {}
+  constructor(private userService: UserService, private toastr: ToastrService) {}
 
   registerForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -33,9 +36,16 @@ export class RegisterComponent {
     if(this.registerForm.valid) {
       console.log("submitted form");
       console.log(this.registerForm.value)
-      this.service.register(this.registerForm.value).subscribe(res => {
-        console.log(res);
-      })
+      this.userService.register(this.registerForm.value).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.toastr.success(res.message, "Success!", { timeOut: 6000 });
+        },
+        error: (error: any) => {
+          console.log(error);
+          this.toastr.error(error.error.message, "Error!", { timeOut: 3000 });
+        }
+      });
       this.registerForm.reset();
 
       // Clear validation states
@@ -46,7 +56,7 @@ export class RegisterComponent {
 
     }
     else {
-      alert("please fill out all fields to sign up!")
+      this.toastr.error("Please fill out all fields!", "Oops!", {timeOut: 3000});
     }
   }
 }

@@ -1,0 +1,21 @@
+.container {
+    position: relative;
+  }
+
+
+.tableContainer {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    max-width: 800px; /* Adjust this value as per your preference */
+    margin: 0 auto; /* Center the table horizontally */
+    margin-top: 25px;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+
+
+  .paginator {
+    max-width: 800px; /* Same as table container */
+    width: 100%;
+    margin: 0 auto;
+}

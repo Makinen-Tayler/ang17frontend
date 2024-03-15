@@ -12,10 +12,14 @@ export class UserService {
 
 
   register(formData: any) {
-    return this.http.post<any>(`${this.apiUrl}/User/register`, formData)
+    return this.http.post<any>(`${this.apiUrl}/User/register`, formData);
   }
 
   login(formData: any) {
-    return this.http.post<any>(`${this.apiUrl}/User/login`, formData)
+    return this.http.post<any>(`${this.apiUrl}/User/login`, formData);
+  }
+
+  getUsers() {
+    return this.http.get<any>(`${this.apiUrl}/User/users`);
   }
 }

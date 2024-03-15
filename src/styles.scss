@@ -31,12 +31,27 @@
 
 }
 
+.orangeTheme {
+    $orange-primary:mat.define-palette(mat.$orange-palette);
+    $orange-accent:mat.define-palette(mat.$red-palette);
+    $orange-warn:mat.define-palette(mat.$teal-palette);
+
+    $orange-theme: mat.define-dark-theme((color: (primary:$orange-primary,
+                    accent: $orange-accent,
+                    warn: $orange-warn)));
+    
+    @include mat.all-component-themes($orange-theme);
+
+    @import 'customThemes';
+
+}
+
 
 html, body { 
     height: 100%; 
-    background-color: #202123;
+    //background-color: #202123;
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    color: white;
+    //color: white;
 }
 

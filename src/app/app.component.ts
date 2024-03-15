@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { LandingComponent } from './landing/landing.component';
+import { LandingComponent } from './components/landing/landing.component';
 @Component({
   selector: 'app-root',
   standalone: true,

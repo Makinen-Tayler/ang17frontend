@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from '@angular/router';
+import { MaterialModule } from '../../modules/materialmodule';
+import { ThemeswitchComponent } from '../themeswitch/themeswitch.component';
+
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, RouterModule],
+  imports: [RouterModule, MaterialModule, ThemeswitchComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

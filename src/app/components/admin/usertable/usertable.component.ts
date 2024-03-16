@@ -9,6 +9,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatTab } from '@angular/material/tabs';
+import {SelectionModel} from '@angular/cdk/collections';
 
 export interface User {
   UserId: string;
@@ -25,11 +26,15 @@ export interface User {
   styleUrl: './usertable.component.scss'
 })
 export class UsertableComponent {
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  displayedColumns: string[] = ['UserId', 'Username', 'Email'];
+
+  displayedColumns: string[] = ['select', 'UserId', 'Username', 'Email'];
   resultsLength = 0;
-  dataSource: User[] = [];
+  dataSource!: MatTableDataSource<User>;
+  selection = new SelectionModel<User>(true, []);
+
   constructor(private userService: UserService, private toastr: ToastrService, private router: Router) {
     this.loadUsers();
    }
@@ -38,14 +43,14 @@ export class UsertableComponent {
    loadUsers() {
     this.userService.getUsers().subscribe({
       next: (res: any) => {
-        console.log(res);
-        this.dataSource = res.map((item: { userId: any; username: any; email: any; }) => ({
+        this.dataSource = new MatTableDataSource<User>(res.map((item: { userId: any; username: any; email: any; }) => ({
           UserId: item.userId,
           Username: item.username,
           Email: item.email
-        })) as User[];
+        })));
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
         this.resultsLength = res.length;
-        // this.toastr.success(res.message, "Success!", { timeOut: 6000 });
       },
       error: (error: any) => {
         console.log(error);
@@ -53,4 +58,52 @@ export class UsertableComponent {
       }
     });
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  addUser() {
+    // const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
+    // this.dataSource.push(ELEMENT_DATA[randomElementIndex]);
+    // this.table.renderRows();
+  }
+
+  removeUser(id: string) {
+    this.userService.delete(id).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.toastr.error(error.error.message, "Error!", { timeOut: 3000 });
+      }
+    });
+    
+  }
+
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+      return this.selection.selected.length === this.dataSource?.data?.length;
+    }
+    
+    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    toggleAllRows() {
+      if (this.isAllSelected()) {
+        this.selection.clear();
+        return;
+      }
+  
+      this.selection.select(...this.dataSource.data);
+    }
+  
+    /** The label for the checkbox on the passed row */
+    checkboxLabel(row?: User): string {
+      if (!row) {
+        return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+      }
+      return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.UserId + 1}`;
+    }
+
 }

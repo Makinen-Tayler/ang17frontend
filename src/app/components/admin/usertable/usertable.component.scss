@@ -1,21 +1,48 @@
+.userCard {
+  max-width: 60%;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
 .container {
-    position: relative;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.filterAndActions {
+  display: flex;
+  align-items: center; /* Align items horizontally */
+}
+
+.filter {
+  margin-right: 10px; /* Add space between filter and actions */
+}
+
+.actions {
+  display: flex; /* Display action buttons inline */
+}
+
+.actions button {
+  margin-left: 10px; /* Add space between action buttons */
+}
 
 .tableContainer {
-    position: relative;
-    min-height: 200px;
-    max-height: 400px;
-    max-width: 800px; /* Adjust this value as per your preference */
-    margin: 0 auto; /* Center the table horizontally */
-    margin-top: 25px;
-    overflow-x: auto; /* Enable horizontal scrolling if needed */
-  }
-
-
-  .paginator {
-    max-width: 800px; /* Same as table container */
-    width: 100%;
-    margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+  overflow-x: auto;
+  min-height: 200px;
+  max-height: 275px;
 }
+.paginator {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+

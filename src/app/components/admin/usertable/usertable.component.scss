@@ -28,7 +28,12 @@
   display: flex;
   align-items: center; /* Align items vertically */
 }
-
+.customTable {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 .deleteButton {
   margin-right: 10px; /* Add spacing between button and paginator */
   margin-left: 15px;
@@ -55,11 +60,15 @@
 }
 
 .tableContainer {
-  max-width: 800px;
+  max-width: 100%;
   width: 100%;
   overflow-x: auto;
   min-height: 200px;
   max-height: 500px;
+}
+tr:hover {
+  background-color: #bab9b9; /* Change background color on hover */
+  cursor: pointer; /* Change cursor on hover */
 }
 .paginator {
   max-width: 800px;

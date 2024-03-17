@@ -4,24 +4,37 @@
   margin-top: 15px;
 }
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url('../../../../assets/images/icons8-male-user-100.png');
   background-size: cover;
+  margin-right: 15px;
 }
 .container {
   position: relative;
   display: flex;
   flex-direction: column;
 }
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(213, 213, 213);
+}
+.tableTitle {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+.cardTitle {
+  padding-right: 10px;
+}
 .addButton {
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  margin-right: 45px;
-  margin-top: 25px;
   cursor: pointer;
+  padding: 2px;
+  margin-left: 10px;
 }
 .center-icon {
-  margin: 0 !important; /* Remove default margin */
   padding: 0; /* Remove default padding */
 }
 .button-and-paginator {
@@ -45,14 +58,13 @@
   margin-left: 5px; /* Adjust the margin as needed */
 }
 .filterAndActions {
-
+  align-items: center;
   display: flex;
-  justify-content: space-between;
 }
 
 .filter {
-  margin-left: 15%;
-  flex: 1; /* This will make the filter take up as much space as possible */
+  margin-right: auto;
+
 }
 
 .actions {

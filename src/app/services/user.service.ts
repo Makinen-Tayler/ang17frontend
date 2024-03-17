@@ -23,7 +23,7 @@ export class UserService {
     return this.http.get<any>(`${this.apiUrl}/User/users`);
   }
 
-  delete(id: string) {
-    return this.http.delete<any>(`${this.apiUrl}/User/delete/${id}`);
+  delete(ids: string[]) {
+    return this.http.post<any>(`${this.apiUrl}/User/delete/`, ids);
   }
 }

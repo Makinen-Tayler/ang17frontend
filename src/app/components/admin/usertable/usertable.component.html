@@ -16,7 +16,7 @@
                 <button mat-raised-button (click)="addUser()" class="demo-button">
                     Add Users
                 </button>
-                <button mat-raised-button (click)="removeUser('')" class="demo-button">
+                <button mat-raised-button (click)="removeSelectedUsers()" class="demo-button">
                     Remove Users
                 </button>
             </div>
@@ -61,7 +61,7 @@
             </table>
         </div>
         <div class="paginator">
-            <mat-paginator [length]="resultsLength" [pageSize]="10" aria-label=""></mat-paginator>
+            <mat-paginator showFirstLastButtons [length]="resultsLength" [pageSizeOptions]="[5, 10, 20]" aria-label=""></mat-paginator>
         </div>
     </div>
 </mat-card>

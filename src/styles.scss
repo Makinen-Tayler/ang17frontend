@@ -2,9 +2,8 @@
 @use '@angular/material' as mat;
 @include mat.core();
 
-
 .lightTheme {
-    $light-primary:mat.define-palette(mat.$deep-purple-palette);
+    $light-primary:mat.define-palette(mat.$teal-palette);
     $light-accent:mat.define-palette(mat.$red-palette);
     $light-warn:mat.define-palette(mat.$teal-palette);
 
@@ -32,7 +31,7 @@
 }
 
 .orangeTheme {
-    $orange-primary:mat.define-palette(mat.$orange-palette);
+    $orange-primary:mat.define-palette(mat.$deep-orange-palette);
     $orange-accent:mat.define-palette(mat.$red-palette);
     $orange-warn:mat.define-palette(mat.$teal-palette);
 
@@ -54,4 +53,7 @@ html, body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     //color: white;
 }
+
+
+
 

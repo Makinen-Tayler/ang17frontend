@@ -30,7 +30,7 @@ export class UsertableComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
-  displayedColumns: string[] = ['select', 'UserId', 'Username', 'Email'];
+  displayedColumns: string[] = ['select', 'UserId', 'Username', 'Email', 'edit'];
   resultsLength = 0;
   dataSource!: MatTableDataSource<User>;
   selection = new SelectionModel<User>(true, []);
@@ -88,7 +88,7 @@ export class UsertableComponent {
         };
         this.dataSource.data.push(newUser);
         this.dataSource.data = [...this.dataSource.data];
-        this.toastr.success("User added successfully!", "Success!", { timeOut: 3000 });
+        this.toastr.success("User added successfully!", "Success!", { timeOut: 500 });
       },
       error: (error: any) => {
         console.log(error);

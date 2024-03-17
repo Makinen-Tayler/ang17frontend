@@ -3,6 +3,9 @@
   margin: 0 auto;
   margin-top: 15px;
 }
+.userCard:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
 .example-header-image {
   background-image: url('../../../../assets/images/icons8-male-user-100.png');
   background-size: cover;
@@ -16,7 +19,7 @@
 .cardHeader {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(213, 213, 213);
+  //background-color: rgb(213, 213, 213);
 }
 .tableTitle {
   display: flex;
@@ -53,6 +56,9 @@
 
   display: flex;
   align-items: center;
+}
+.deleteButton:hover {
+  cursor: pointer;
 }
 .selectedCount {
   margin-left: 5px; /* Adjust the margin as needed */

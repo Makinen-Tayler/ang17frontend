@@ -9,15 +9,17 @@
             <div class="filter">
                 <mat-form-field>
                     <mat-label>Filter</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="search..." #input>
+                    <input matInput [(ngModel)]="filterValue" (keyup)="applyFilter($event)" placeholder="search..." #input>
+                    @if (filterValue) {
+                        <button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    }
                 </mat-form-field>
             </div>
             <div class="actions">
-                <button mat-raised-button (click)="addUser()" class="demo-button">
-                    Add Users
-                </button>
-                <button mat-raised-button (click)="removeSelectedUsers()" class="demo-button">
-                    Remove Users
+                <button (click)="addUser()" class="addButton" matTooltip="Add user">
+                    <mat-icon class="center-icon">add</mat-icon>
                 </button>
             </div>
         </div>
@@ -60,8 +62,16 @@
                 <tr mat-row *matRowDef="let user; columns: displayedColumns;" (click)="selection.toggle(user)"></tr>
             </table>
         </div>
-        <div class="paginator">
-            <mat-paginator showFirstLastButtons [length]="resultsLength" [pageSizeOptions]="[5, 10, 20]" aria-label=""></mat-paginator>
+        <div class="button-and-paginator">
+            <button (click)="removeSelectedUsers()" class="deleteButton" [disabled]="selection.isEmpty()" matTooltip="Delete user(s)">
+                <mat-icon>delete</mat-icon>
+                <span class="selectedCount">{{ getSelectedRowCount() }}</span>
+            </button>
+            <div class="paginator">
+                <mat-paginator showFirstLastButtons [length]="resultsLength" [pageSizeOptions]="[5, 10, 20]"
+                    aria-label=""></mat-paginator>
+            </div>
         </div>
+
     </div>
 </mat-card>

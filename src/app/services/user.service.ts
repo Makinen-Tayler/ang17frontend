@@ -15,6 +15,11 @@ export class UserService {
     return this.http.post<any>(`${this.apiUrl}/User/register`, formData);
   }
 
+  addUser(username: string, email: string, password: string) {
+    var formData = { username, email, password };
+    return this.http.post<any>(`${this.apiUrl}/User/register`, formData);
+  }
+
   login(formData: any) {
     return this.http.post<any>(`${this.apiUrl}/User/login`, formData);
   }

@@ -31,4 +31,9 @@ export class UserService {
   delete(ids: string[]) {
     return this.http.post<any>(`${this.apiUrl}/User/delete/`, ids);
   }
+
+  updateUser(userId: string, username: string, email: string) {
+    var formData = { userId, username, email };
+    return this.http.put<any>(`${this.apiUrl}/User/update`, formData);
+  }
 }

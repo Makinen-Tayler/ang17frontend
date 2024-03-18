@@ -9,19 +9,22 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTable } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
-
-
+import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 export interface User {
   UserId: string;
   Username: string;
   Email: string;
+  isEditing: boolean;
+  canDelete: boolean;
+
 }
 
 
 @Component({
   selector: 'app-usertable',
   standalone: true,
-  imports: [MaterialModule, RouterModule, MatSortModule, MatPaginatorModule, MatTableModule, FormsModule],
+  imports: [MaterialModule, RouterModule, MatSortModule, MatPaginatorModule, MatTableModule, FormsModule, CommonModule, NgIf],
   templateUrl: './usertable.component.html',
   styleUrl: './usertable.component.scss'
 })
@@ -35,7 +38,6 @@ export class UsertableComponent {
   dataSource!: MatTableDataSource<User>;
   selection = new SelectionModel<User>(true, []);
   filterValue: string = '';
-
   constructor(private userService: UserService, private toastr: ToastrService, private router: Router) {
     this.loadUsers();
   }
@@ -47,11 +49,36 @@ export class UsertableComponent {
         this.dataSource = new MatTableDataSource<User>(res.map((item: { userId: any; username: any; email: any; }) => ({
           UserId: item.userId,
           Username: item.username,
-          Email: item.email
+          Email: item.email,
         })));
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.resultsLength = res.length;
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.toastr.error(error.error.message, "Error!", { timeOut: 3000 });
+      }
+    });
+  }
+  toggleEditing(user: User) {
+
+    if (user.isEditing) {
+      // Call your save function here
+      this.saveChanges(user);
+      user.isEditing = !user.isEditing;
+      user.canDelete = !user.canDelete;
+    } else {
+      user.isEditing = !user.isEditing;
+      user.canDelete = !user.canDelete;
+
+    }
+  }
+
+  saveChanges(user: User) {
+    this.userService.updateUser(user.UserId, user.Username, user.Email).subscribe({
+      next: (res: any) => {
+        this.toastr.success(res.message, "Success!", { timeOut: 3000 });
       },
       error: (error: any) => {
         console.log(error);
@@ -84,7 +111,9 @@ export class UsertableComponent {
         const newUser: User = {
           UserId: res.userDto.userId,
           Username: res.userDto.username,
-          Email: res.userDto.email
+          Email: res.userDto.email,
+          isEditing: false,
+          canDelete: false
         };
         this.dataSource.data.push(newUser);
         this.dataSource.data = [...this.dataSource.data];

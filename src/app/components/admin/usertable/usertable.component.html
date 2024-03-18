@@ -84,7 +84,7 @@
                   </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
-                <tr mat-row *matRowDef="let user; columns: displayedColumns;" (click)="selection.toggle(user)"></tr>
+                <tr mat-row *matRowDef="let user; columns: displayedColumns;" (click)="selection.toggle(user)" class="theTableRows"></tr>
             </table>
         </div>
         <div class="button-and-paginator">

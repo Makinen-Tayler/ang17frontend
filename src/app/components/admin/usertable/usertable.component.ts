@@ -78,7 +78,7 @@ export class UsertableComponent {
   saveChanges(user: User) {
     this.userService.updateUser(user.UserId, user.Username, user.Email).subscribe({
       next: (res: any) => {
-        this.toastr.success(res.message, "Success!", { timeOut: 3000 });
+        this.toastr.success(res.message, "Success!", { timeOut: 350 });
       },
       error: (error: any) => {
         console.log(error);
@@ -171,7 +171,6 @@ export class UsertableComponent {
       this.selection.clear();
       return;
     }
-
     this.selection.select(...this.dataSource.data);
   }
 

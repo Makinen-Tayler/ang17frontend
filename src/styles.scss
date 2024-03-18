@@ -5,7 +5,7 @@
 .lightTheme {
     $light-primary:mat.define-palette(mat.$teal-palette);
     $light-accent:mat.define-palette(mat.$red-palette);
-    $light-warn:mat.define-palette(mat.$teal-palette);
+    $light-warn:mat.define-palette(mat.$orange-palette);
 
     $light-theme: mat.define-light-theme((color: (primary:$light-primary,
                     accent: $light-accent,

@@ -84,15 +84,19 @@
   min-height: 200px;
   max-height: 500px;
 }
-tr:hover {
-  background-color: #bab9b9; /* Change background color on hover */
-  cursor: pointer; /* Change cursor on hover */
-}
+// tr:hover {
+//   background-color: #bab9b9; /* Change background color on hover */
+//   cursor: pointer; /* Change cursor on hover */
+// }
 .paginator {
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
 }
+.theTableRows:hover {
+  background-color: #bab9b9; /* Change background color on hover */
+  cursor: pointer; /* Change cursor on hover */
 
+}
 
 

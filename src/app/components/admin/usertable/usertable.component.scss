@@ -84,10 +84,6 @@
   min-height: 200px;
   max-height: 500px;
 }
-// tr:hover {
-//   background-color: #bab9b9; /* Change background color on hover */
-//   cursor: pointer; /* Change cursor on hover */
-// }
 .paginator {
   max-width: 800px;
   width: 100%;
@@ -98,5 +94,9 @@
   cursor: pointer; /* Change cursor on hover */
 
 }
-
-
+.green-icon .mat-icon {
+  color: green;
+}
+.red-icon .mat-icon {
+  color: red;
+}

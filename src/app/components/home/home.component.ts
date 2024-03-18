@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { MaterialModule } from '../../modules/materialmodule';
 import { HeaderComponent } from '../header/header.component';
+import { PostfeedComponent } from './postfeed/postfeed.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MaterialModule, FormsModule, RouterModule, ReactiveFormsModule, ToastrModule, HeaderComponent],
+  imports: [MaterialModule, FormsModule, RouterModule, ReactiveFormsModule, ToastrModule, HeaderComponent, PostfeedComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

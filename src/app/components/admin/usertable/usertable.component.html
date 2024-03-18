@@ -74,10 +74,10 @@
                 <ng-container matColumnDef="edit">
                     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
                     <td mat-cell *matCellDef="let user">
-                      <button mat-icon-button aria-label="edit row" (click)="toggleEditing(user)">
+                      <button mat-icon-button aria-label="edit row" (click)="toggleEditing(user)" [ngClass]="{'green-icon': user.isEditing}">
                         <mat-icon>{{ user.isEditing ? 'save' : 'edit' }}</mat-icon>
                       </button>
-                      <button (click)="removeSelectedUsers()" [disabled]="!user.canDelete" matTooltip="Delete user(s)" mat-icon-button aria-label="edit row">
+                      <button (click)="removeSelectedUsers()" [disabled]="!user.canDelete" matTooltip="Delete user(s)" mat-icon-button aria-label="edit row" [ngClass]="{'red-icon': user.isEditing}">
                         <mat-icon>delete</mat-icon>
                       </button>
                     </td>

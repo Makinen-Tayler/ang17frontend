@@ -18,9 +18,19 @@
                 </mat-form-field>
             </div>
             <div class="actions">
-                <button (click)="addUser()" class="addButton" matTooltip="Add user">
+                <!-- <button (click)="addUser()" class="addButton" matTooltip="Add user">
+                    <mat-icon class="center-icon">add</mat-icon>
+                </button> -->
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="addButton" matTooltip="Add user">
                     <mat-icon class="center-icon">add</mat-icon>
                 </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="addRandomUser()">Add Random</button>
+                    <button mat-menu-item (click)="addRealUser()">Add Real</button>
+                </mat-menu>
+
+
             </div>
         </div>
     </mat-card-header>
@@ -88,7 +98,7 @@
             </table>
         </div>
         <div class="button-and-paginator">
-            <button (click)="removeSelectedUsers()" class="deleteButton" [disabled]="selection.isEmpty()" matTooltip="Delete user(s)">
+            <button (click)="openConfirmModal()" class="deleteButton" [disabled]="selection.isEmpty()" matTooltip="Delete user(s)">
                 <mat-icon>delete</mat-icon>
                 <span class="selectedCount">{{ getSelectedRowCount() }}</span>
             </button>

@@ -11,6 +11,9 @@ import { MatTable } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalService } from '../../../services/modal.service';
+
 export interface User {
   UserId: string;
   Username: string;
@@ -38,7 +41,9 @@ export class UsertableComponent {
   dataSource!: MatTableDataSource<User>;
   selection = new SelectionModel<User>(true, []);
   filterValue: string = '';
-  constructor(private userService: UserService, private toastr: ToastrService, private router: Router) {
+
+
+  constructor(private userService: UserService, private toastr: ToastrService, private router: Router, private modalService: ModalService) {
     this.loadUsers();
   }
 
@@ -96,12 +101,22 @@ export class UsertableComponent {
     }
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  addRealUser() {
+    this.modalService.openAddRealModal();
+}
   clearFilter() {
     this.filterValue = '';
     this.applyFilter('');
   }
-  addUser(): void {
+  async openConfirmModal() {
+    const confirmed = await this.modalService.openConfirmModal("Delete Users", "Are you sure you want to delete the selected users?");
+    if (confirmed) {
+      this.removeSelectedUsers();
+    } else {
+      // Logic if the action is canceled
+    }
+  }
+  addRandomUser(): void {
     const randomUsername = this.generateRandomString(8);
     const randomEmail = this.generateRandomString(8) + '@random.com';
     const randomPassword = this.generateRandomString(10);

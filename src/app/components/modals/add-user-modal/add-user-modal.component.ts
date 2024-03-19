@@ -31,7 +31,7 @@ export class AddUserModalComponent {
         next: (res: any) => {
           console.log(res);
           this.toastr.success(res.message, "Success!", { timeOut: 6000 });
-          this.modalService.closeAddRealModal();
+          this.modalService.closeModal();
         },
         error: (error: any) => {
           console.log(error);

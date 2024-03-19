@@ -3,7 +3,9 @@ import { MaterialModule } from '../../modules/materialmodule';
 import { Router } from '@angular/router';
 import { ThemeswitchComponent } from '../themeswitch/themeswitch.component';
 import { RouterModule } from '@angular/router';
-
+import { ModalService } from '../../services/modal.service';
+import { UserService } from '../../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -13,4 +15,10 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
 
+  constructor(private userService: UserService, private toastr: ToastrService, private modalService: ModalService) {}
+
+
+  async openCreatePostModal() {
+    this.modalService.openCreatePostModal();
+  }
 }

@@ -1,6 +1,11 @@
 <mat-toolbar color="primary">
     <span class="homeLabel" routerLink='/home'>Life Collab</span>
     <span class="example-spacer"></span>
+
+    <button mat-icon-button (click)="openCreatePostModal()" class="addPostButton" matTooltip="Create Post">
+      <mat-icon>add</mat-icon>
+    </button>
+
     <button routerLink='/admin' matTooltip="Admin page" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>assessment</mat-icon>
     </button>
